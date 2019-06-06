@@ -1,0 +1,11 @@
+{
+  "restartable": "rs",
+  "verbose": false,
+  "ignore": [],
+  "watch": ["src", "bin"],
+  "env": {
+    "DEBUG": "*",
+    "NODE_ENV": "development",
+    "PORT": "3000"
+  }
+}

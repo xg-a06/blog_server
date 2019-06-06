@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon bin/www"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/xgjser/koa2_blog/issues"
   },
-  "homepage": "https://github.com/xgjser/koa2_blog#readme"
+  "homepage": "https://github.com/xgjser/koa2_blog#readme",
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "koa": "^2.7.0"
+  }
 }
