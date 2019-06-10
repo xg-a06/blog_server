@@ -2,7 +2,7 @@
  * @Description:
  * @Author: xg-a06
  * @Date: 2019-04-27 07:11:11
- * @LastEditTime: 2019-06-10 16:31:41
+ * @LastEditTime: 2019-06-11 00:38:16
  * @LastEditors: xg-a06
  */
 module.exports = {
@@ -10,7 +10,7 @@ module.exports = {
   MYSQL_CONF: {
     host: '127.0.0.1',
     user: 'root',
-    password: '123456',
+    password: 'sa123',
     port: '3306',
     database: 'blog'
   },
