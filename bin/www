@@ -7,40 +7,37 @@
  * @LastEditors: xg-a06
  */
 
-const http = require('http')
-const { debugLog, debugError } = require('../src/utils/log')
-const config = require('../src/config')
-const app = require('../src/app')
+const http = require('http');
+const config = require('../src/config');
+const app = require('../src/app');
 
-const server = http.createServer(app.callback())
+const server = http.createServer(app.callback());
 
-server.listen(config.PORT)
-server.on('error', onError)
-server.on('listening', onListening)
+server.listen(config.PORT);
 
-function onError(error) {
+server.on('error', (error) => {
   if (error.syscall !== 'listen') {
-    throw error
+    throw error;
   }
 
-  let bind = 'Port ' + port
+  // const bind = `Port ${config.PORT}`;
 
   switch (error.code) {
     case 'EACCES':
-      debugError(bind + ' requires elevated privileges')
-      process.exit(1)
-      break
+      // debugError(`${bind} requires elevated privileges`);
+      process.exit(1);
+      break;
     case 'EADDRINUSE':
-      debugError(bind + ' is already in use')
-      process.exit(1)
-      break
+      // debugError(`${bind} is already in use`);
+      process.exit(1);
+      break;
     default:
-      throw error
+      throw error;
   }
-}
+});
 
-function onListening() {
-  let addr = server.address()
-  let bind = 'port ' + addr.port
-  debugLog('Listening on ' + bind)
-}
+server.on('listening', () => {
+  const addr = server.address();
+  // const bind = `port ${addr.port}`;
+  // debugLog(`Listening on ${bind}`);
+});

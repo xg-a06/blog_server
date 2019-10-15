@@ -6,7 +6,8 @@
  * @LastEditors: xg-a06
  */
 
-const userRouter = require('./user')
-module.exports = app => {
-  app.use(userRouter())
-}
+const homeRouter = require('./home');
+
+module.exports = (app) => {
+  app.use(homeRouter());
+};

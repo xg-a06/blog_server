@@ -1,0 +1,14 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:8.0.17
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=ALIYUN__)(!^
+      - MYSQL_USER=xg
+      - MYSQL_PASSWORD=mysql__)(!^
+    ports:
+      - 13306:3306
+    volumes:
+      - './vol/db:/var/lib/mysql'
+    command: --default-authentication-plugin=mysql_native_password

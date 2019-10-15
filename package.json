@@ -18,13 +18,21 @@
   "homepage": "https://github.com/xgjser/koa2_blog#readme",
   "devDependencies": {
     "cross-env": "^5.2.0",
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
     "nodemon": "^1.19.1"
   },
   "dependencies": {
+    "ip": "^1.1.5",
     "koa": "^2.7.0",
     "koa-body": "^4.1.0",
+    "koa-compose": "^4.1.0",
     "koa-router": "^7.4.0",
     "mysql": "^2.17.1",
-    "redis": "^2.8.0"
+    "redis": "^2.8.0",
+    "uuid": "^3.3.3",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^4.2.1"
   }
 }

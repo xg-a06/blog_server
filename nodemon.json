@@ -4,8 +4,7 @@
   "ignore": [],
   "watch": ["src", "bin"],
   "env": {
-    "DEBUG": "debug:*",
     "NODE_ENV": "development",
-    "PORT": "3000"
+    "PORT": "13000"
   }
 }
