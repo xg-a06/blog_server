@@ -60,28 +60,73 @@
 
 // // module.exports = getLogger;
 
+const path = require('path');
+const Winston = require('winston');
+require('winston-daily-rotate-file');
+// const { NODE_ENV } = require('../config');
 
-const { createLogger, format, transports } = require('winston');
 
+const { createLogger, format, transports } = Winston;
+const LEVEL = Symbol.for('level');
+const logPath = path.resolve(__dirname, '../../logs');
 
-const accessFormatter = format.printf(({
-  level, message, label, timestamp,
-}) => `[ ${timestamp} ] [ ${level.toUpperCase()} ] ${label} : ${message}`);
+const accessFormatter = format.printf(
+  ({
+    level, message, timestamp,
+  }) => `[ ${timestamp} ] [ ${level.toUpperCase()} ] : ${message}`,
+);
+function filterOnly(level) {
+  return format((info) => {
+    if (info[LEVEL] === level) {
+      return info;
+    }
+    return false;
+  })();
+}
 
-const accessLogger = createLogger({
-  level: 'info',
+function test() {
+  return format((info) => {
+    console.log(info);
+    return info;
+  })();
+}
+
+const logger = createLogger({
   format: format.combine(
-    format.label({ label: 'access' }),
     format.timestamp({
       format: 'YYYY-MM-DD HH:mm:ss',
     }),
     accessFormatter,
   ),
   transports: [
-    new transports.File({ filename: 'combined.log' }),
+    new transports.DailyRotateFile({
+      filename: `${logPath}/access-%DATE%.log`,
+      datePattern: 'YYYY-MM-DD',
+      level: 'http',
+      format: filterOnly('http'),
+    }),
+    new transports.DailyRotateFile({
+      filename: `${logPath}/application-%DATE%.log`,
+      datePattern: 'YYYY-MM-DD',
+      level: 'info',
+      format: filterOnly('info'),
+    }),
+    new transports.DailyRotateFile({
+      filename: `${logPath}/error-%DATE%.log`,
+      datePattern: 'YYYY-MM-DD',
+      level: 'error',
+      format: test(),
+    }),
+  ],
+  exceptionHandlers: [
+    new transports.DailyRotateFile({
+      filename: `${logPath}/exception-%DATE%.log`,
+      datePattern: 'YYYY-MM-DD',
+    }),
   ],
 });
 
+
 module.exports = {
-  accessLogger,
+  logger,
 };

@@ -1,8 +1,0 @@
-[ 2019-10-15 20:51:25 ] [ INFO ] access : 7f3244d0-ef4a-11e9-a73e-0b8d18df4667 192.168.110.147 GET localhost:8000/index null 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36'
-[ 2019-10-15 20:51:25 ] [ ERROR ] access : 7f3244d0-ef4a-11e9-a73e-0b8d18df4667 6ms b is not defined
-[ 2019-10-15 20:51:58 ] [ INFO ] access : 93354130-ef4a-11e9-97e9-cf70207e572c 192.168.110.147 GET localhost:8000/index null 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36'
-[ 2019-10-15 20:51:58 ] [ ERROR ] access : 93354130-ef4a-11e9-97e9-cf70207e572c 6ms 'b is not defined'
-[ 2019-10-15 20:52:12 ] [ INFO ] access : 9b2b10e0-ef4a-11e9-be42-abbce82a5a35 192.168.110.147 GET localhost:8000/index null 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36'
-[ 2019-10-15 20:52:12 ] [ INFO ] access : 9b2b10e0-ef4a-11e9-be42-abbce82a5a35 8ms 'undefined'
-[ 2019-10-15 20:52:30 ] [ INFO ] access : a5f0a260-ef4a-11e9-acab-753e2b153ee1 192.168.110.147 GET localhost:8000/index null 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36'
-[ 2019-10-15 20:52:30 ] [ INFO ] access : a5f0a260-ef4a-11e9-acab-753e2b153ee1 9ms 'none'

@@ -8,10 +8,16 @@
 const Koa = require('koa');
 const router = require('./routes');
 const middleware = require('./middleware');
+const { logger } = require('./utils/logger');
 
 const app = new Koa();
 
 middleware(app);
 router(app);
 
+app.on('error', (err, ctx) => {
+  console.log(err.stack);
+
+  logger.error(err);
+});
 module.exports = app;

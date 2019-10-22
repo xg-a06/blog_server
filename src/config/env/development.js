@@ -6,7 +6,7 @@
  * @LastEditors: xg-a06
  */
 module.exports = {
-  PORT: 8000,
+  PORT: process.env.PORT || 13000,
   MYSQL_CONF: {
     host: '127.0.0.1',
     user: 'xg',
