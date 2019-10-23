@@ -4,25 +4,27 @@ const { logger } = require('../../utils/logger');
 
 const formatStart = (data) => {
   const {
-    accessId, ip, method, host, url, referer, userAgent,
+    requestId, ip, method, host, url, referer, userAgent,
   } = data;
-  return `${accessId} ${ip} ${method} ${host + url} ${referer} '${userAgent}'`;
+  return `${requestId} ${ip} ${method} ${host + url} ${referer} '${userAgent}'`;
 };
 
 const formatEnd = (data) => {
-  const { accessId, responseTime, error } = data;
-  return `${accessId} ${responseTime} '${error || 'none'}'`;
+  const { requestId, responseTime, error } = data;
+  return `${requestId} ${responseTime} '${error || 'none'}'`;
 };
 
 module.exports = () => async (ctx, next) => {
+  const requestId = uuid.v1();
+  ctx.info = (message) => {
+    logger.info(`${requestId} ${message}`);
+  };
+  ctx.requestId = requestId;
   const start = Date.now();
   const ip = ipAddr.address();
-  const requestId = uuid.v1();
-  ctx.requestId = requestId;
   const {
     method, url, host, headers,
   } = ctx.request;
-
   let data = {
     requestId,
     ip,

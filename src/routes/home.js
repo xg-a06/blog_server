@@ -17,7 +17,7 @@ router.get('/', async (ctx, next) => {
 });
 
 router.get('/index', async (ctx, next) => {
-  b = a + 1;
+  ctx.info('asdasdasd');
   ctx.body = '这是首页';
 });
 

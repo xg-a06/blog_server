@@ -16,8 +16,8 @@ middleware(app);
 router(app);
 
 app.on('error', (err, ctx) => {
-  console.log(err.stack);
-
-  logger.error(err);
+  const exception = err;
+  exception.message = `${ctx.requestId} ${err.message}`;
+  logger.error(exception);
 });
 module.exports = app;

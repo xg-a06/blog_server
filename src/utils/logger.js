@@ -70,10 +70,10 @@ const { createLogger, format, transports } = Winston;
 const LEVEL = Symbol.for('level');
 const logPath = path.resolve(__dirname, '../../logs');
 
-const accessFormatter = format.printf(
+const logFormatter = format.printf(
   ({
-    level, message, timestamp,
-  }) => `[ ${timestamp} ] [ ${level.toUpperCase()} ] : ${message}`,
+    level, message, timestamp, stack,
+  }) => `[ ${timestamp} ] [ ${level.toUpperCase()} ] : ${stack || message} `,
 );
 function filterOnly(level) {
   return format((info) => {
@@ -84,19 +84,12 @@ function filterOnly(level) {
   })();
 }
 
-function test() {
-  return format((info) => {
-    console.log(info);
-    return info;
-  })();
-}
-
 const logger = createLogger({
   format: format.combine(
     format.timestamp({
-      format: 'YYYY-MM-DD HH:mm:ss',
+      format: 'YYYY-MM-DD HH:mm:ss:SSS',
     }),
-    accessFormatter,
+    logFormatter,
   ),
   transports: [
     new transports.DailyRotateFile({
@@ -115,7 +108,6 @@ const logger = createLogger({
       filename: `${logPath}/error-%DATE%.log`,
       datePattern: 'YYYY-MM-DD',
       level: 'error',
-      format: test(),
     }),
   ],
   exceptionHandlers: [
