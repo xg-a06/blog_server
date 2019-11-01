@@ -1,15 +1,10 @@
-/* eslint-disable global-require */
-/* eslint-disable import/no-dynamic-require */
+const NODE_ENV = process.env.NODE_ENV || 'development';
 
-let config;
+let config = require(`./env/${NODE_ENV}.js`);
 
-if (process && process.env && process.env.NODE_ENV) {
-  config = require(`./env/${process.env.NODE_ENV}.js`);
-} else {
-  config = require('./env/development.js');
-}
 config = {
-  NODE_ENV: process.env.NODE_ENV || 'development',
-  ...config,
+  NODE_ENV,
+  ...config
 };
+
 module.exports = config;
