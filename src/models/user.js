@@ -1,16 +1,26 @@
 const { db, Sequelize } = require('./db');
 
 const User = db.define('user', {
-  userName: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    unique: true,
-    comment: '用户名，唯一'
+  id: {
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV1,
+    primaryKey: true
   },
-  password: {
-    type: Sequelize.STRING,
+  loginId: {
+    type: Sequelize.STRING(20),
     allowNull: false,
-    comment: '密码'
+    unique: true
+    // comment: '用户名，唯一'
+  },
+  loginPWD: {
+    type: Sequelize.STRING(20),
+    allowNull: false
+  },
+  nickName: {
+    type: Sequelize.STRING(20)
+  },
+  avatar: {
+    type: Sequelize.STRING
   }
 });
 
