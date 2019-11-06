@@ -1,13 +1,13 @@
-/*
- * @Description:
- * @Author: xg-a06
- * @Date: 2019-04-27 07:12:35
- * @LastEditTime: 2019-06-07 00:46:56
- * @LastEditors: xg-a06
- */
+const userRouter = require('./user');
 
-const homeRouter = require('./home');
+const routes = [];
 
-module.exports = (app) => {
-  app.use(homeRouter());
+const registerRouter = (app, routes) => {
+  routes.forEach(router => {
+    app.use(router.routes(), router.allowedMethods());
+  });
+};
+
+module.exports = app => {
+  registerRouter(app, routes);
 };

@@ -1,7 +1,7 @@
 /**
  * @description user service
  */
-
+const { DEFAULT_AVATAR } = require('../config/const');
 const User = require('../models/user');
 
 const userService = {
@@ -16,7 +16,7 @@ const userService = {
     loginId,
     loginPWD,
     nickName = loginId,
-    avatar = '/uploads/avatars/avatar.png'
+    avatar = DEFAULT_AVATAR
   }) {
     const result=await User.create({
       loginId,

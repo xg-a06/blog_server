@@ -17,12 +17,17 @@ router.get('/', async (ctx, next) => {
 
 router.get('/index', async (ctx, next) => {
   ctx.info('asdasdasd');
-  ctx.body = '这是首页';
+  ctx.body = 'index';
 });
 
 router.get('/isExist', async (ctx, next) => {
   const { userName } = ctx.request.body;
-  ctx.body = await isExist(userName);
+  ctx.body = await UserController.isExist(userName);
+});
+
+router.post('/register', async (ctx, next) => {
+  const { userName } = ctx.request.body;
+  ctx.body = await UserController.register(userName);
 });
 
 module.exports = router;

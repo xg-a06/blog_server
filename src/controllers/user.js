@@ -2,6 +2,7 @@
  * @description user controller
  */
 const UserService = require('../services/user');
+const { doCrypto }=require('../utils/tools');
 
 const userController = {
   /**
@@ -22,9 +23,9 @@ const userController = {
     if (userInfo) {
         // 用户名已存在
     }
-    const result=await createUser({
-      userName,
-      password: doCrypto(password),
+    const result=await UserService.createUser({
+      loginId,
+      password: doCrypto(loginPWD),
       gender
   })
   }
