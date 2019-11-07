@@ -12,16 +12,16 @@ const userService = {
    * @param {string} nickName 昵称
    * @param {string} avatar 头像
    */
-  createUser({
+  async createUser ({
     loginId,
     loginPWD,
     nickName = loginId,
     avatar = DEFAULT_AVATAR
   }) {
-    const result=await User.create({
+    const result = await User.create({
       loginId,
       loginPWD,
-      nickName ,
+      nickName,
       avatar
     });
 
@@ -34,12 +34,12 @@ const userService = {
    * @param {string} loginId 账号
    * @param {string} loginPWD 密码
    */
-  getUser(loginId,loginPWD){
-    const cond={ loginId };
-    if(loginPWD){
-      cond.loginPWD=loginPWD;
+  async getUser (loginId, loginPWD) {
+    const cond = { loginId };
+    if (loginPWD) {
+      cond.loginPWD = loginPWD;
     }
-    const result=await User.findOne({
+    const result = await User.findOne({
       attributes: ['id', 'loginId', 'loginPWD', 'nickName', 'avatar'],
       where: cond
     });
@@ -47,9 +47,9 @@ const userService = {
     if (!result) {
       return result;
     }
-  
+
     const data = result.dataValues;
-  
+
     return data;
   }
 };
