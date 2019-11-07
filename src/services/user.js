@@ -12,29 +12,25 @@ const userService = {
    * @param {string} nickName 昵称
    * @param {string} avatar 头像
    */
-  async createUser ({
-    loginId,
-    loginPWD,
-    nickName = loginId,
-    avatar = DEFAULT_AVATAR
-  }) {
-    const result = await User.create({
-      loginId,
-      loginPWD,
-      nickName,
-      avatar
-    });
+  async createUser() {
+    console.log(12312313);
 
-    const data = result.dataValues;
-
-    return data;
+    // const result = await User.create({
+    //   loginId,
+    //   loginPWD,
+    //   nickName,
+    //   avatar
+    // });
+    // const data = result.dataValues;
+    // console.log(data);
+    // return data;
   },
   /**
    * 获取用户
    * @param {string} loginId 账号
    * @param {string} loginPWD 密码
    */
-  async getUser (loginId, loginPWD) {
+  async getUser(loginId, loginPWD) {
     const cond = { loginId };
     if (loginPWD) {
       cond.loginPWD = loginPWD;

@@ -1,3 +1,5 @@
 module.exports = {
-  loginId: 'test001'
-}
+  cookie: '',
+  loginId: 'test001',
+  loginPWD: 'test001'
+};

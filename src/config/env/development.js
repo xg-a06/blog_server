@@ -6,9 +6,7 @@ module.exports = {
     password: 'mysql__)(!^',
     port: '13306',
     database: 'blog',
-    logging: d => {
-      console.log(d);
-    },
+    logging: false,
     timezone: '+08:00',
     pool: {
       max: 10,

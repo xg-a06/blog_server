@@ -20,14 +20,15 @@ router.get('/index', async (ctx, next) => {
   ctx.body = 'index';
 });
 
-router.get('/isExist', async (ctx, next) => {
-  const { userName } = ctx.request.body;
-  ctx.body = await UserController.isExist(userName);
+router.get('/isExist/:loginId', async (ctx, next) => {
+  const { loginId } = ctx.params;
+  ctx.body = await UserController.isExist(loginId);
 });
 
 router.post('/register', async (ctx, next) => {
-  const { userName } = ctx.request.body;
-  ctx.body = await UserController.register(userName);
+  console.log(123);
+  const { loginId, loginPWD } = ctx.request.body;
+  ctx.body = await UserController.register({ loginId, loginPWD });
 });
 
 module.exports = router;

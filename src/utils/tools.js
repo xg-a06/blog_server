@@ -19,7 +19,28 @@ function doCrypto(content) {
   return md5(str);
 }
 
+/**
+ * 成功的数据模型
+ * @param {any} data
+ */
+function success(data = {}) {
+  return {
+    code: 10000,
+    data
+  };
+}
+
+/**
+ * 失败返回模型
+ * @param {object} data { code, message }
+ */
+function error({ code, message }) {
+  return { code, message };
+}
+
 module.exports = {
   md5,
-  doCrypto
+  doCrypto,
+  success,
+  error
 };

@@ -8,14 +8,14 @@
  */
 
 const http = require('http');
-const config = require('../src/config');
+const config = require('../src/config/env');
 const app = require('../src/app');
 
 const server = http.createServer(app.callback());
 
 server.listen(config.PORT);
 
-server.on('error', (error) => {
+server.on('error', error => {
   if (error.syscall !== 'listen') {
     throw error;
   }

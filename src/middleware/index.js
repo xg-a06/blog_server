@@ -7,9 +7,15 @@
  */
 // const path = require('path');
 // const koaBody = require('koa-body');
+const bodyparser = require('koa-bodyparser');
 const logger = require('./logger');
 
-module.exports = (app) => {
+module.exports = app => {
+  app.use(
+    bodyparser({
+      enableTypes: ['json', 'form', 'text']
+    })
+  );
   app.use(logger());
   // app.use(
   //   koaBody({

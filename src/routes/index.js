@@ -1,6 +1,6 @@
 const userRouter = require('./user');
 
-const routes = [];
+const routes = [userRouter];
 
 const registerRouter = (app, routes) => {
   routes.forEach(router => {
