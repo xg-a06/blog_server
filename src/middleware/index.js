@@ -9,27 +9,19 @@
 // const koaBody = require('koa-body');
 const bodyparser = require('koa-bodyparser');
 const logger = require('./logger');
+const error = require('./error');
 
 module.exports = app => {
+  //post 请求参数处理
   app.use(
     bodyparser({
       enableTypes: ['json', 'form', 'text']
     })
   );
+
+  //access日志中间件
   app.use(logger());
-  // app.use(
-  //   koaBody({
-  //     multipart: true, // 支持文件上传
-  //     formidable: {
-  //       uploadDir: path.join(__dirname, '../../upload/'), // 设置文件上传目录
-  //       keepExtensions: true, // 保持文件的后缀
-  //       maxFieldsSize: 2 * 1024 * 1024, // 文件上传大小
-  //       onFileBegin: (name, file) => {
-  //         // 文件上传前的设置
-  //         // console.log(`name: ${name}`);
-  //         // console.log(file);
-  //       },
-  //     },
-  //   }),
-  // );
+
+  //错误处理
+  app.use(error());
 };

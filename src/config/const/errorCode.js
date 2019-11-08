@@ -12,5 +12,9 @@ module.exports = {
   userIsExist: {
     code: 10002,
     message: '用户已存在'
+  },
+  systemError: {
+    code: 50000,
+    message: '系统故障，请联系管理员'
   }
 };

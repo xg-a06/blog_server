@@ -16,7 +16,6 @@ router.get('/', async (ctx, next) => {
 });
 
 router.get('/index', async (ctx, next) => {
-  ctx.info('asdasdasd');
   ctx.body = 'index';
 });
 
@@ -26,7 +25,6 @@ router.get('/isExist/:loginId', async (ctx, next) => {
 });
 
 router.post('/register', async (ctx, next) => {
-  console.log(123);
   const { loginId, loginPWD } = ctx.request.body;
   ctx.body = await UserController.register({ loginId, loginPWD });
 });
