@@ -12,18 +12,20 @@ const userService = {
    * @param {string} nickName 昵称
    * @param {string} avatar 头像
    */
-  async createUser() {
-    console.log(12312313);
-
-    // const result = await User.create({
-    //   loginId,
-    //   loginPWD,
-    //   nickName,
-    //   avatar
-    // });
-    // const data = result.dataValues;
-    // console.log(data);
-    // return data;
+  async createUser({
+    loginId,
+    loginPWD,
+    nickName = loginId,
+    avatar = DEFAULT_AVATAR
+  }) {
+    const result = await User.create({
+      loginId,
+      loginPWD,
+      nickName,
+      avatar
+    });
+    const data = result.dataValues;
+    return data;
   },
   /**
    * 获取用户

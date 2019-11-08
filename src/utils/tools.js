@@ -15,7 +15,7 @@ function md5(content) {
  * @param {string} content 加密内容
  */
 function doCrypto(content) {
-  const str = `password=${password}&key=${SECRET_KEY}`;
+  const str = `password=${content}&key=${SECRET_KEY}`;
   return md5(str);
 }
 

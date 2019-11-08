@@ -9,11 +9,11 @@ const User = db.define('user', {
   loginId: {
     type: Sequelize.STRING(20),
     allowNull: false,
-    unique: true
+    unique: 'loginId'
     // comment: '用户名，唯一'
   },
   loginPWD: {
-    type: Sequelize.STRING(20),
+    type: Sequelize.STRING(100),
     allowNull: false
   },
   nickName: {
