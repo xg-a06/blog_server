@@ -4,6 +4,7 @@
 
 const Router = require('koa-router');
 const UserController = require('../controllers/user');
+
 // const compose = require('koa-compose');
 
 const router = new Router();
@@ -27,6 +28,19 @@ router.get('/isExist/:loginId', async (ctx, next) => {
 router.post('/register', async (ctx, next) => {
   const { loginId, loginPWD } = ctx.request.body;
   ctx.body = await UserController.register({ loginId, loginPWD });
+});
+
+router.post('/login', async (ctx, next) => {
+  let appId = 'wx3984f435dcd5bd6f';
+  let appSecret = '';
+  const { code } = ctx.request.body;
+  ctx.body = await UserController.login({ appId, appSecret, code });
+});
+
+router.post('/decrypt', async (ctx, next) => {
+  let appId = 'wx3984f435dcd5bd6f';
+  const { sessionKey, encryptedData, iv } = ctx.request.body;
+  ctx.body = await UserController.decryptData({ appId, sessionKey, encryptedData, iv });
 });
 
 module.exports = router;

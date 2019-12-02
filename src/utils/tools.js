@@ -5,7 +5,7 @@ const { SECRET_KEY } = require('../config/const');
  * 获取md5值
  * @param {string} content 加密内容
  */
-function md5(content) {
+function md5 (content) {
   const md5 = crypto.createHash('md5');
   return md5.update(content).digest('hex');
 }
@@ -14,7 +14,7 @@ function md5(content) {
  * MD5加盐加密
  * @param {string} content 加密内容
  */
-function doCrypto(content) {
+function doCrypto (content) {
   const str = `password=${content}&key=${SECRET_KEY}`;
   return md5(str);
 }
@@ -23,7 +23,7 @@ function doCrypto(content) {
  * 成功的数据模型
  * @param {any} data
  */
-function success(data = {}) {
+function success (data = {}) {
   return {
     code: 10000,
     data
@@ -34,7 +34,7 @@ function success(data = {}) {
  * 失败返回模型
  * @param {object} data { code, message }
  */
-function error({ code, message }) {
+function error ({ code = -1, message }) {
   return { code, message };
 }
 
