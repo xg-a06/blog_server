@@ -53,6 +53,16 @@ const userController = {
     const pc = new WXBizDataCrypt(appId, sessionKey)
     const data = pc.decryptData(encryptedData, iv)
     return success(data);
+  },
+  async token ({ appId, appSecret }) {
+    let url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s';
+    url = util.format(url, appId, appSecret);
+    const result = await axios.get(url);
+    if (result.status === 200) {
+      return success(result.data);
+    } else {
+      return error({ message: JSON.stringify(result.data) });
+    }
   }
 };
 

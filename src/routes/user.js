@@ -43,5 +43,11 @@ router.post('/decrypt', async (ctx, next) => {
   ctx.body = await UserController.decryptData({ appId, sessionKey, encryptedData, iv });
 });
 
+router.get('/token', async (ctx, next) => {
+  let appId = 'wx3984f435dcd5bd6f';
+  let appSecret = '';
+  ctx.body = await UserController.token({ appId, appSecret });
+});
+
 module.exports = router;
 // module.exports = () => compose([router.routes(), router.allowedMethods()]);
