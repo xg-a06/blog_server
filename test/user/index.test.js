@@ -3,23 +3,28 @@ const testData = require('./data');
 
 describe('用户相关测试', () => {
   test('查询用户，应该不存在', async () => {
-    const res = await server.get(`/api/user/isExist/${testData.loginId}`);
+    const res = await server.get(`/api/user/${testData.loginId}`);
     expect(res.body.code).toBe(10001);
   });
 
   test('注册用户，应该成功', async () => {
-    const res = await server.post(`/api/user/register`).send(testData);
+    const res = await server.post(`/api/user`).send(testData);
     expect(res.body.code).toBe(10000);
   });
 
   test('查询用户，应该存在', async () => {
-    const res = await server.get(`/api/user/isExist/${testData.loginId}`);
+    const res = await server.get(`/api/user/${testData.loginId}`);
     expect(res.body.code).toBe(10000);
   });
 
   test('重复注册用户，应该失败', async () => {
-    const res = await server.post(`/api/user/register`).send(testData);
+    const res = await server.post(`/api/user`).send(testData);
     expect(res.body.code).toBe(10002);
+  });
+
+  test('删除用户，应该成功', async () => {
+    const res = await server.delete(`/api/user/${testData.loginId}`);
+    expect(res.body.code).toBe(10000);
   });
 
   // test('登录，应该成功', async () => {

@@ -12,7 +12,7 @@ const userService = {
    * @param {string} nickName 昵称
    * @param {string} avatar 头像
    */
-  async createUser({
+  async createUser ({
     loginId,
     loginPWD,
     nickName = loginId,
@@ -24,7 +24,9 @@ const userService = {
       nickName,
       avatar
     });
+
     const data = result.dataValues;
+
     return data;
   },
   /**
@@ -32,7 +34,7 @@ const userService = {
    * @param {string} loginId 账号
    * @param {string} loginPWD 密码
    */
-  async getUser(loginId, loginPWD) {
+  async getUser (loginId, loginPWD) {
     const cond = { loginId };
     if (loginPWD) {
       cond.loginPWD = loginPWD;
@@ -49,6 +51,20 @@ const userService = {
     const data = result.dataValues;
 
     return data;
+  },
+  /**
+   * 删除用户,自动化测试专用
+   * @param {string} loginId 账号
+   * @param {string} loginPWD 密码
+   */
+  async delUser (loginId) {
+
+    const cond = { loginId };
+    const result = await User.destroy({
+      where: cond
+    });
+
+    return result > 0;
   }
 };
 

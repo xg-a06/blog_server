@@ -16,38 +16,43 @@ router.get('/', async (ctx, next) => {
   ctx.redirect('/index');
 });
 
-router.get('/index', async (ctx, next) => {
-  ctx.body = 'index';
+router.get('/welcome', async (ctx, next) => {
+  ctx.body = 'welcome';
 });
 
-router.get('/isExist/:loginId', async (ctx, next) => {
+router.get('/:loginId', async (ctx, next) => {
   const { loginId } = ctx.params;
   ctx.body = await UserController.isExist(loginId);
 });
 
-router.post('/register', async (ctx, next) => {
+router.post('/', async (ctx, next) => {
   const { loginId, loginPWD } = ctx.request.body;
   ctx.body = await UserController.register({ loginId, loginPWD });
 });
 
-router.post('/login', async (ctx, next) => {
-  let appId = 'wx3984f435dcd5bd6f';
-  let appSecret = '';
-  const { code } = ctx.request.body;
-  ctx.body = await UserController.login({ appId, appSecret, code });
+router.delete('/:loginId', async (ctx, next) => {
+  const { loginId } = ctx.params;
+  ctx.body = await UserController.delUser(loginId);
 });
 
-router.post('/decrypt', async (ctx, next) => {
-  let appId = 'wx3984f435dcd5bd6f';
-  const { sessionKey, encryptedData, iv } = ctx.request.body;
-  ctx.body = await UserController.decryptData({ appId, sessionKey, encryptedData, iv });
-});
+// router.post('/login', async (ctx, next) => {
+//   let appId = 'wx3984f435dcd5bd6f';
+//   let appSecret = '';
+//   const { code } = ctx.request.body;
+//   ctx.body = await UserController.login({ appId, appSecret, code });
+// });
 
-router.get('/token', async (ctx, next) => {
-  let appId = 'wx3984f435dcd5bd6f';
-  let appSecret = '';
-  ctx.body = await UserController.token({ appId, appSecret });
-});
+// router.post('/decrypt', async (ctx, next) => {
+//   let appId = 'wx3984f435dcd5bd6f';
+//   const { sessionKey, encryptedData, iv } = ctx.request.body;
+//   ctx.body = await UserController.decryptData({ appId, sessionKey, encryptedData, iv });
+// });
+
+// router.get('/token', async (ctx, next) => {
+//   let appId = 'wx3984f435dcd5bd6f';
+//   let appSecret = '';
+//   ctx.body = await UserController.token({ appId, appSecret });
+// });
 
 module.exports = router;
 // module.exports = () => compose([router.routes(), router.allowedMethods()]);
