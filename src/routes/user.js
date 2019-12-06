@@ -30,6 +30,11 @@ router.post('/', async (ctx, next) => {
   ctx.body = await UserController.register({ loginId, loginPWD });
 });
 
+router.put('/', async (ctx, next) => {
+  const { loginId, oldPwd, loginPWD } = ctx.request.body;
+  ctx.body = await UserController.updatePwd({ loginId, oldPwd, loginPWD });
+});
+
 router.delete('/:loginId', async (ctx, next) => {
   const { loginId } = ctx.params;
   ctx.body = await UserController.delUser(loginId);

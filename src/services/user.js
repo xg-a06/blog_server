@@ -12,7 +12,7 @@ const userService = {
    * @param {string} nickName 昵称
    * @param {string} avatar 头像
    */
-  async createUser ({
+  async create ({
     loginId,
     loginPWD,
     nickName = loginId,
@@ -34,7 +34,7 @@ const userService = {
    * @param {string} loginId 账号
    * @param {string} loginPWD 密码
    */
-  async getUser (loginId, loginPWD) {
+  async get (loginId, loginPWD) {
     const cond = { loginId };
     if (loginPWD) {
       cond.loginPWD = loginPWD;
@@ -57,7 +57,7 @@ const userService = {
    * @param {string} loginId 账号
    * @param {string} loginPWD 密码
    */
-  async delUser (loginId) {
+  async delete (loginId) {
 
     const cond = { loginId };
     const result = await User.destroy({
@@ -65,6 +65,36 @@ const userService = {
     });
 
     return result > 0;
+  },
+  /**
+   * 更新用户
+   * @param {string} loginId 账号
+   * @param {string} oldPwd 旧密码
+   * @param {string} loginPWD 密码
+   * @param {string} nickName 昵称
+   * @param {string} avatar 头像
+   */
+  async update ({ loginPWD, nickName, avatar }, { loginId, oldPwd }) {
+    const cond = { loginId };
+
+    if (oldPwd) {
+      cond.loginPWD = oldPwd;
+    }
+    const data = {}
+    if (loginPWD) {
+      data.loginPWD = loginPWD
+    }
+    if (nickName) {
+      data.nickName = nickName
+    }
+    if (avatar) {
+      data.avatar = avatar
+    }
+    const result = await User.update(data, {
+      where: cond
+    })
+
+    return result[0] > 0
   }
 };
 

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon bin/www",
-    "test": "cross-env NODE_ENV=development jest --forceExit --runInBand"
+    "test": "cross-env jest --forceExit --runInBand"
   },
   "repository": {
     "type": "git",
@@ -42,5 +42,8 @@
     "uuid": "^3.3.3",
     "winston": "^3.2.1",
     "winston-daily-rotate-file": "^4.2.1"
+  },
+  "jest": {
+    "testRegex": "/test/.*.test.js$"
   }
 }

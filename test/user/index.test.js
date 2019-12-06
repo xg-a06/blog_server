@@ -22,6 +22,13 @@ describe('用户相关测试', () => {
     expect(res.body.code).toBe(10002);
   });
 
+  test('更新用户密码，应该成功', async () => {
+    testData.oldPwd = testData.loginPWD;
+    testData.loginPWD = testData.loginPWD + 1;
+    const res = await server.put(`/api/user`).send(testData);
+    expect(res.body.code).toBe(10000);
+  });
+
   test('删除用户，应该成功', async () => {
     const res = await server.delete(`/api/user/${testData.loginId}`);
     expect(res.body.code).toBe(10000);
