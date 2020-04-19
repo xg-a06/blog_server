@@ -1,6 +1,7 @@
 const userRouter = require('./user');
+const categoryRouter = require('./category');
 
-const routes = [userRouter];
+const routes = [userRouter, categoryRouter];
 
 const registerRouter = (app, routes) => {
   routes.forEach(router => {

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon bin/www",
-    "test": "cross-env jest --forceExit --runInBand"
+    "test": "cross-env jest --verbose --runInBand "
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,7 @@
     "koa-body": "^4.1.0",
     "koa-bodyparser": "^4.2.1",
     "koa-compose": "^4.1.0",
+    "koa-generic-session": "^2.0.4",
     "koa-router": "^7.4.0",
     "mysql2": "^2.0.0",
     "redis": "^2.8.0",

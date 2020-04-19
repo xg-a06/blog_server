@@ -1,7 +1,3 @@
-/**
- * @description user router
- */
-
 const Router = require('koa-router');
 const UserController = require('../controllers/user');
 
@@ -38,6 +34,17 @@ router.put('/', async (ctx, next) => {
 router.delete('/:loginId', async (ctx, next) => {
   const { loginId } = ctx.params;
   ctx.body = await UserController.delUser(loginId);
+});
+
+router.post('/login', async (ctx, next) => {
+  const { loginId, loginPWD } = ctx.request.body;
+  const { session } = ctx;
+  ctx.body = await UserController.login({ loginId, loginPWD, session });
+});
+
+router.post('/logout', async (ctx, next) => {
+  const { session } = ctx;
+  ctx.body = await UserController.logout({ session });
 });
 
 // router.post('/login', async (ctx, next) => {

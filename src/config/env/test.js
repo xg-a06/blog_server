@@ -1,9 +1,9 @@
 module.exports = {
   PORT: process.env.PORT || 13000,
   MYSQL_CONF: {
-    host: '',
-    user: '',
-    password: '',
+    host: 'jser.site',
+    user: 'xg',
+    password: 'mysql__)(!^',
     port: '13306',
     database: 'blog',
     logging: false,

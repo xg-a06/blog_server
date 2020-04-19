@@ -27,5 +27,15 @@ module.exports = {
   systemRefuse: {
     code: 50001,
     message: '操作不允许'
-  }
+  },
+  //分类不存在
+  categoryNotExist: {
+    code: 10101,
+    message: '分类不存在'
+  },
+  //分类已存在
+  categoryIsExist: {
+    code: 10102,
+    message: '分类名已存在'
+  },
 };

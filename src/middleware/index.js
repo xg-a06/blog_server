@@ -8,8 +8,10 @@
 // const path = require('path');
 // const koaBody = require('koa-body');
 const bodyparser = require('koa-bodyparser');
+const session = require('koa-generic-session')
 const logger = require('./logger');
 const error = require('./error');
+const { SECRET_KEY } = require('../config/const');
 
 module.exports = app => {
   //post 请求参数处理
@@ -24,4 +26,19 @@ module.exports = app => {
 
   //错误处理
   app.use(error());
+
+  // session 配置
+  app.keys = [SECRET_KEY]
+  app.use(session({
+    key: 'xg.sid',
+    // prefix: 'blog:sess:', // redis key 的前缀，默认是 `koa:sess:`
+    cookie: {
+      path: '/',
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000  // 单位 ms
+    },
+    // store: redisStore({
+    //     all: `${REDIS_CONF.host}:${REDIS_CONF.port}`
+    // })
+  }))
 };

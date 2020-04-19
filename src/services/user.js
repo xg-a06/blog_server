@@ -1,6 +1,3 @@
-/**
- * @description user service
- */
 const { DEFAULT_AVATAR } = require('../config/const');
 const User = require('../models/user');
 

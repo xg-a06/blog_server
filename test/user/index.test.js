@@ -1,10 +1,12 @@
 const server = require('../server');
+const { db } = require('../../src/models/db');
 const testData = require('./data');
 
 describe('用户相关测试', () => {
-  test('查询用户，应该不存在', async () => {
+  test('查询用户，应该不存在', async (done) => {
     const res = await server.get(`/api/user/${testData.loginId}`);
     expect(res.body.code).toBe(10001);
+    done();
   });
 
   test('注册用户，应该成功', async () => {
@@ -22,6 +24,20 @@ describe('用户相关测试', () => {
     expect(res.body.code).toBe(10002);
   });
 
+  test('登录用户，应该成功', async () => {
+    const res = await server.post(`/api/user/login`).send(testData);
+    expect(res.body.code).toBe(10000);
+
+    testData.cookie = res.headers['set-cookie'].join(';');
+  });
+
+  test('退出用户，应该成功', async () => {
+    const res = await server.post(`/api/user/logout`).set('cookie', testData.cookie);
+    expect(res.body.code).toBe(10000);
+
+    testData.cookie = '';
+  });
+
   test('更新用户密码，应该成功', async () => {
     testData.oldPwd = testData.loginPWD;
     testData.loginPWD = testData.loginPWD + 1;
@@ -34,29 +50,9 @@ describe('用户相关测试', () => {
     expect(res.body.code).toBe(10000);
   });
 
-  // test('登录，应该成功', async () => {
-  //   const res = await server.post('/api/user/login').send({
-  //     userName,
-  //     password
-  //   });
-  //   expect(res.body.errno).toBe(0);
+  afterAll(async done => {
+    await db.close();
+    done();
+  });
 
-  //   // 获取 cookie
-  //   COOKIE = res.headers['set-cookie'].join(';');
-  // });
-
-  // test('修改密码，应该成功', async () => {
-  //   const res = await server
-  //     .patch('/api/user/changePassword')
-  //     .send({
-  //       password,
-  //       newPassword: `p_${Date.now()}`
-  //     })
-  //     .set('cookie', COOKIE);
-  //   expect(res.body.errno).toBe(0);
-  // });
-  // test('删除用户，应该成功', async () => {
-  //   const res = await server.post('/api/user/delete').set('cookie', COOKIE);
-  //   expect(res.body.errno).toBe(0);
-  // });
 });
