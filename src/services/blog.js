@@ -1,5 +1,6 @@
 const Blog = require('../models/blog');
 const User = require('../models/user');
+const Tag = require('../models/tag');
 const TagBlog = require('../models/tagBlog');
 
 const blogService = {
@@ -67,10 +68,10 @@ const blogService = {
       condBlog.title = title;
     }
     if (tagId) {
-      condTag.tagId = tagId;
+      condTag.id = tagId;
     }
 
-    const result = await Blog.findOne({
+    const result = await Blog.findAndCountAll({
       limit: pageSize,
       offset: pageSize * pageIndex,
       attributes: ['id', 'title', 'cover', 'content', 'userId'],
@@ -80,29 +81,27 @@ const blogService = {
           model: User,
           attributes: ['nickName', 'avatar'],
         },
+
         {
-          model: TagBlog,
-          attributes: ['tagId'],
+          model: Tag,
+          attributes: ['name'],
           where: condTag
         }
       ]
     });
-
     if (!result) {
       return result;
     }
-
     let blogList = result.rows.map(row => row.dataValues);
-    console.log('blogList', blogList);
-
     blogList = blogList.map(blogItem => {
-      blogItem.user = blogItem.user.dataValues
+      blogItem.user = blogItem.user.dataValues;
+      blogItem.tags = blogItem.tags.map(t => t.dataValues);
       return blogItem
     })
 
     return {
       count: result.count,
-      blogList
+      list: blogList
     };
   },
   /**

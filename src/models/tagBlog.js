@@ -3,23 +3,15 @@ const Tag = require('./tag');
 const Blog = require('./blog');
 
 const TagBlog = db.define('tagBlog', {
-  tagId: {
+  id: {
     type: Sequelize.UUID,
-    allowNull: false
-  },
-  blogId: {
-    type: Sequelize.UUID,
-    allowNull: false
+    defaultValue: Sequelize.UUIDV1,
+    primaryKey: true
   }
 });
 
-Tag.hasMany(TagBlog, {
-  foreignKey: 'tagId'
-});
-
-Blog.hasMany(TagBlog, {
-  foreignKey: 'blogId'
-});
+Tag.belongsToMany(Blog, { through: TagBlog });
+Blog.belongsToMany(Tag, { through: TagBlog });
 
 module.exports = TagBlog;
 
