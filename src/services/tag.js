@@ -1,18 +1,18 @@
-const Category = require('../models/category');
+const Tag = require('../models/tag');
 
-const categoryService = {
+const tagService = {
   /**
-   * 创建分类
-   * @param {string} name 分类名
-   * @param {int} level 分类层级
-   * @param {int} parentId 父分类id，没有则为null
+   * 创建标签
+   * @param {string} name 标签名
+   * @param {int} level 标签层级
+   * @param {int} parentId 父标签id，没有则为null
    */
   async create ({
     name,
     level = 0,
     parentId = null
   }) {
-    const result = await Category.create({
+    const result = await Tag.create({
       name,
       level,
       parentId
@@ -23,12 +23,12 @@ const categoryService = {
     return data;
   },
   /**
-   * 获取分类
-   * @param {string} name 分类名
+   * 获取标签
+   * @param {string} name 标签名
    */
   async get (name) {
     const cond = { name };
-    const result = await Category.findOne({
+    const result = await Tag.findOne({
       attributes: ['id', 'name', 'level', 'parentId'],
       where: cond
     });
@@ -42,12 +42,12 @@ const categoryService = {
     return data;
   },
   /**
-   * 根据父级id或者所有子分类
-   * @param {int} parentId 父分类id
+   * 根据父级id或者所有子标签
+   * @param {int} parentId 父标签id
    */
   async getByParentId (parentId = null) {
     const cond = { parentId };
-    const result = await Category.findAll({
+    const result = await Tag.findAll({
       attributes: ['id', 'name', 'level', 'parentId'],
       where: cond
     });
@@ -61,12 +61,12 @@ const categoryService = {
     return data;
   },
   /**
-   * 删除分类
-   * @param {string} name 分类名
+   * 删除标签
+   * @param {string} name 标签名
    */
   async delete (name) {
     const cond = { name };
-    const result = await Category.destroy({
+    const result = await Tag.destroy({
       where: cond
     });
 
@@ -74,4 +74,4 @@ const categoryService = {
   }
 };
 
-module.exports = categoryService;
+module.exports = tagService;

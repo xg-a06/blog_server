@@ -1,7 +1,8 @@
 const userRouter = require('./user');
-const categoryRouter = require('./category');
+const tagRouter = require('./tag');
+const blogRouter = require('./blog');
 
-const routes = [userRouter, categoryRouter];
+const routes = [userRouter, tagRouter, blogRouter];
 
 const registerRouter = (app, routes) => {
   routes.forEach(router => {

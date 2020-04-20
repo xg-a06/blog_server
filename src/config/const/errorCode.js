@@ -28,14 +28,18 @@ module.exports = {
     code: 50001,
     message: '操作不允许'
   },
-  //分类不存在
-  categoryNotExist: {
+  //标签不存在
+  tagNotExist: {
     code: 10101,
-    message: '分类不存在'
+    message: '标签不存在'
   },
-  //分类已存在
-  categoryIsExist: {
+  //标签已存在
+  tagIsExist: {
     code: 10102,
-    message: '分类名已存在'
+    message: '标签名已存在'
   },
+  blogNotExist: {
+    code: 10201,
+    message: '博客不存在'
+  }
 };

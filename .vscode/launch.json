@@ -9,6 +9,21 @@
       "request": "attach",
       "name": "Attach by Process ID",
       "processId": "${command:PickProcess}"
+    },
+    {
+      "name": "Debug Jest Tests",
+      "type": "node",
+      "request": "launch",
+      "runtimeArgs": [
+        "--inspect-brk",
+        "${workspaceRoot}/node_modules/jest/bin/jest.js",
+        "--runInBand"
+      ],
+      //"sourceMaps": true,
+      "trace": true,
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "port": 9229
     }
   ]
 }

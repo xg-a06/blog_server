@@ -1,6 +1,6 @@
 const { db, Sequelize } = require('./db');
 
-const Category = db.define('category', {
+const Tag = db.define('tag', {
   id: {
     type: Sequelize.UUID,
     defaultValue: Sequelize.UUIDV1,
@@ -22,4 +22,4 @@ const Category = db.define('category', {
   }
 });
 
-module.exports = Category;
+module.exports = Tag;

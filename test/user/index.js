@@ -3,10 +3,9 @@ const { db } = require('../../src/models/db');
 const testData = require('./data');
 
 describe('用户相关测试', () => {
-  test('查询用户，应该不存在', async (done) => {
+  test('查询用户，应该不存在', async () => {
     const res = await server.get(`/api/user/${testData.loginId}`);
     expect(res.body.code).toBe(10001);
-    done();
   });
 
   test('注册用户，应该成功', async () => {
