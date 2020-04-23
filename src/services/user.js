@@ -51,12 +51,10 @@ const userService = {
   },
   /**
    * 删除用户,自动化测试专用
-   * @param {string} loginId 账号
-   * @param {string} loginPWD 密码
+   * @param {string} id 用户id
    */
-  async delete (loginId) {
-
-    const cond = { loginId };
+  async delete (id) {
+    const cond = { id };
     const result = await User.destroy({
       where: cond
     });

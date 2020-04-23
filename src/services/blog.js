@@ -81,7 +81,6 @@ const blogService = {
           model: User,
           attributes: ['nickName', 'avatar'],
         },
-
         {
           model: Tag,
           attributes: ['name'],
@@ -105,12 +104,12 @@ const blogService = {
     };
   },
   /**
-   * 删除标签
-   * @param {string} name 标签名
+   * 删除博客
+   * @param {string} id 博客id
    */
-  async delete (name) {
-    const cond = { name };
-    const result = await Tag.destroy({
+  async delete (id) {
+    const cond = { id };
+    const result = await Blog.destroy({
       where: cond
     });
 

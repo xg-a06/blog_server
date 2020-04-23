@@ -11,13 +11,14 @@ describe('标签相关测试', () => {
   test('添加一级标签，应该成功', async () => {
     const res = await server.post(`/api/tag`).send(testData[0]);
     expect(res.body.code).toBe(10000);
-
+    testData[0].id = res.body.data.id;
     testData[1].parentId = res.body.data.id;
   });
 
   test('添加二级标签，应该成功', async () => {
     const res = await server.post(`/api/tag`).send(testData[1]);
     expect(res.body.code).toBe(10000);
+    testData[1].id = res.body.data.id;
   });
 
   test('查询一级标签，应该成功', async () => {
@@ -31,12 +32,12 @@ describe('标签相关测试', () => {
   });
 
   test('删除一级标签，应该成功', async () => {
-    const res = await server.delete(`/api/tag/${encodeURIComponent(testData[0].name)}`);
+    const res = await server.delete(`/api/tag/${encodeURIComponent(testData[0].id)}`);
     expect(res.body.code).toBe(10000);
   });
 
   test('删除二级标签，应该成功', async () => {
-    const res = await server.delete(`/api/tag/${encodeURIComponent(testData[1].name)}`);
+    const res = await server.delete(`/api/tag/${encodeURIComponent(testData[1].id)}`);
     expect(res.body.code).toBe(10000);
   });
 

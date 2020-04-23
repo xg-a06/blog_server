@@ -43,7 +43,18 @@ const blogController = {
       return error(blogNotExist);
     }
     return success(blogInfo);
+  },
+  /**
+   * 删除标签
+   * @param {string} id 标签id
+  */
+  async delBlog (id) {
+    const result = await BlogService.delete(id);
+    await TagBlogService.delete(id);
+    return success(result);
   }
+
+
 };
 
 module.exports = blogController;

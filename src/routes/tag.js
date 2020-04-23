@@ -23,9 +23,9 @@ router.post('/query', async (ctx, next) => {
   ctx.body = await TagController.findByParentId(parentId);
 });
 
-router.delete('/:name', async (ctx, next) => {
-  const { name } = ctx.params;
-  ctx.body = await TagController.delTag(name);
+router.delete('/:id', async (ctx, next) => {
+  const { id } = ctx.params;
+  ctx.body = await TagController.delTag(id);
 });
 
 module.exports = router;

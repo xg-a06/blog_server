@@ -21,23 +21,24 @@ describe('博客相关测试', () => {
     const res = await server.post(`/api/blog`).send(testData[0]);
     expect(res.body.code).toBe(10000);
 
-    testData.id = res.body.data.id;
+    testData[0].id = res.body.data.id;
   });
 
   test('查询博客，应该存在', async () => {
     const res = await server.post(`/api/blog/query`).send({
-      title: testData[0].title,
+      // title: testData[0].title,
+      tagIds: testData[0].tagIds,
       ...testData[1]
     });
     expect(res.body.code).toBe(10000);
-    console.log(res.body.data.list[0].tags[0]);
-
   });
 
-  // test('删除二级标签，应该成功', async () => {
-  //   const res = await server.delete(`/api/tag/${encodeURIComponent(testData[1].name)}`);
-  //   expect(res.body.code).toBe(10000);
-  // });
+  test('删除博客，应该成功', async () => {
+    const res = await server.delete(`/api/blog/${testData[0].id}`);
+    await server.delete(`/api/tag/${testData[0].tagIds[0]}`);
+    await server.delete(`/api/user/${testData[0].userId}`);
+    expect(res.body.code).toBe(10000);
+  });
 
   afterAll(async done => {
     await db.close();

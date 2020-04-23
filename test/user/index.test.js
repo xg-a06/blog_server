@@ -11,6 +11,7 @@ describe('用户相关测试', () => {
   test('注册用户，应该成功', async () => {
     const res = await server.post(`/api/user`).send(testData);
     expect(res.body.code).toBe(10000);
+    testData.id = res.body.data.id;
   });
 
   test('查询用户，应该存在', async () => {
@@ -45,7 +46,7 @@ describe('用户相关测试', () => {
   });
 
   test('删除用户，应该成功', async () => {
-    const res = await server.delete(`/api/user/${testData.loginId}`);
+    const res = await server.delete(`/api/user/${testData.id}`);
     expect(res.body.code).toBe(10000);
   });
 

@@ -31,9 +31,9 @@ router.put('/', async (ctx, next) => {
   ctx.body = await UserController.updatePwd({ loginId, oldPwd, loginPWD });
 });
 
-router.delete('/:loginId', async (ctx, next) => {
-  const { loginId } = ctx.params;
-  ctx.body = await UserController.delUser(loginId);
+router.delete('/:id', async (ctx, next) => {
+  const { id } = ctx.params;
+  ctx.body = await UserController.delUser(id);
 });
 
 router.post('/login', async (ctx, next) => {

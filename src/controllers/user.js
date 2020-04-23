@@ -51,14 +51,14 @@ const userController = {
   },
   /**
    * 删除用户
-   * @param {string} loginId 账号
+   * @param {string} id 用户id
   */
-  async delUser (loginId) {
+  async delUser (id) {
     if (config.NODE_ENV !== 'test') {
       return error(systemRefuse);
     }
 
-    const result = await UserService.delete(loginId);
+    const result = await UserService.delete(id);
     if (!result) {
       return error(userNotExist);
     }

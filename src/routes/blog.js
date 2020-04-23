@@ -20,4 +20,9 @@ router.post('/query', async (ctx, next) => {
   ctx.body = await BlogController.findByConds({ title, tagId, pageIndex, pageSize });
 });
 
+router.delete('/:id', async (ctx, next) => {
+  const { id } = ctx.params;
+  ctx.body = await BlogController.delBlog(id);
+});
+
 module.exports = router;

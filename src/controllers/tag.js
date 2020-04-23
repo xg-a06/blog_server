@@ -43,10 +43,10 @@ const tagController = {
   },
   /**
    * 删除标签
-   * @param {string} name 标签
+   * @param {string} id 标签id
   */
-  async delTag (name) {
-    const result = await TagService.delete(name);
+  async delTag (id) {
+    const result = await TagService.delete(id);
     if (!result) {
       return error(tagNotExist);
     }
